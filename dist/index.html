@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Website</title>
+    <!-- Google Fonts for premium typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <script type="module" crossorigin src="/assets/index-DEe6o7yd.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-BjHa8hBu.css">
+</head>
+
+<body>
+    <div class="topbar">
+        <span>Are you a participant?</span>
+        <div class="topbar-form">
+            <span class="topbar-url">AHASLIDES.COM/</span>
+            <input type="text" class="topbar-input" placeholder="ENTER CODE.">
+            <button class="topbar-btn">Join</button>
+        </div>
+    </div>
+    <header>
+        <nav>
+            <div class="nav-left">
+                <div class="logo">
+                    <!-- Icon placeholder -->
+                    <span style="color: #ff0055">✻</span> AhaSlides
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#features">Features <i class="ph ph-caret-down"></i></a></li>
+                    <li><a href="#pricing">Pricing <i class="ph ph-caret-down"></i></a></li>
+                    <li><a href="#resources">Resources <i class="ph ph-caret-down"></i></a></li>
+                    <li><a href="#pricing-main">Pricing</a></li>
+                    <li><a href="#enterprise">Enterprise</a></li>
+                </ul>
+            </div>
+            <div class="nav-right">
+                <a href="#lang" class="nav-item"><i class="ph ph-globe"></i> EN</a>
+                <a href="#login" class="nav-item">Login</a>
+                <a href="#signup" class="btn-primary small">Sign up</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="hero-container">
+                <!-- Left Column: Content -->
+                <div class="hero-content">
+                    <h1>Presentations that bring the room to life</h1>
+                    <p>Reset audience attention and see what they understand and how they feel - with live data to back
+                        it up.</p>
+
+                    <button class="btn-primary large">Try it now - It's free</button>
+
+                    <div class="social-proof">
+                        <img src="data:image/png;base64,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" alt="G2 Logo" class="proof-logo">
+                        <div class="stars">★★★★★ <span class="rating">4.8</span></div>
+                        <span class="reviews">Based on 1000 reviews</span>
+                    </div>
+                </div>
+                <div class="scale-logo">
+                    <svg width="548" height="537" viewBox="0 0 548 537" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M116.66 188.077C190.501 180.748 258.871 220.327 228.97 302.6C214.899 344.946 188.489 396.491 166.252 435.446C147.42 468.428 120.872 519.909 82.3845 531.462C32.3889 546.46 9.12652 502.394 26.4112 459.267C34.2754 439.642 52.1436 421.003 67.6156 406.678C106.735 370.468 143.057 341.25 182.478 305.165C220.401 270.452 207.944 218.436 149.114 237.551C121.035 246.682 100.524 269.312 68.5275 263.204C52.7808 260.199 40.3857 247.665 42.6378 230.954C46.6935 200.861 91.0172 189.907 116.66 188.077Z"
+                            fill="#FF4081" />
+                        <path
+                            d="M307.743 263.398C332.449 260.717 361.378 275.779 383.944 285.57C419.418 300.958 491.752 337.792 513.575 371.691C528.294 394.555 518.438 423.18 494.613 429.227C464.835 434.345 445.897 416.88 427.154 397.894C398.405 368.776 370.634 332.478 343.659 304.013C314.115 275.675 281.447 287.271 292.454 326.991C298.895 350.214 325.601 377.188 308.281 402.474C295.838 420.64 273.929 411.453 264.468 394.632C243.01 356.482 252.125 268.345 307.733 263.398H307.743Z"
+                            fill="#FF4081" />
+                        <path
+                            d="M270.174 187.335C245.468 190.016 212.517 172.022 189.952 162.232C154.477 146.843 87.1687 111.826 67.2493 80.8747C52.5302 58.0103 56.4326 26.6239 86.2107 21.5061C115.989 16.3882 134.89 35.1042 152.941 53.3892C180.289 81.0926 208.705 119.921 237.72 148.855C260.692 173.593 298.319 165.121 287.312 125.401C280.871 102.179 252.555 71.2291 271.997 46.7926C286.201 28.9413 305.711 40.3798 314.113 56.6874C335.261 97.7328 328.151 180.922 270.183 187.335L270.174 187.335Z"
+                            fill="#FF4081" />
+                        <path
+                            d="M351.121 213.718C351.12 213.716 351.122 213.715 351.123 213.716C367.309 230.534 397.857 202.41 414.756 200.718C427.04 199.489 442.098 204.366 441.74 219.408C441.74 243.962 397.057 247.611 378.837 245.794C343.649 242.285 318.222 219.262 331.07 180.379C341.839 147.783 376.76 72.4819 402.905 51.1969C430.817 28.4691 464.048 45.6737 453.226 81.4308C445.165 108.05 390.65 146.769 368.477 167.369C356.778 178.237 337.639 198.329 351.118 213.719C351.119 213.72 351.122 213.719 351.121 213.718Z"
+                            fill="#FF4081" />
+                    </svg>
+                </div>
+                <!-- Right Column: Abstract Image Composition -->
+                <div class="hero-visuals">
+                    <!-- Main speaker image -->
+                    <img src="/assets/Main%20Image-rXGzlMKi.png" class="visual-item speaker" alt="Speaker">
+
+                    <!-- Floating elements -->
+                    <img src="/assets/hero1-3IWg0e5T.png" class="visual-item floating chart-1" alt="Chart">
+                    <img src="/assets/hero2-fsRghKjd.png" class="visual-item floating word-cloud" alt="Word Cloud">
+                    <img src="/assets/hero3-B3VEKm-o.png" class="visual-item floating audience-1" alt="Audience">
+                    <img src="/assets/hero4-J7V9TXLG.png" class="visual-item floating poll" alt="Poll">
+                </div>
+            </div>
+        </section>
+
+        <!-- "It works where you work" strip -->
+        <section class="logostrip">
+            <h2>It works where you work</h2>
+            <div class="logo-grid">
+                <div class="logo-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/16/Microsoft_PowerPoint_2013-2019_logo.svg"
+                        alt="Powerpoint">
+                    <span>Powerpoint</span>
+                </div>
+                <div class="logo-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Microsoft_Office_Teams_%282018%E2%80%93present%29.svg"
+                        alt="MS Teams">
+                    <span>MS Teams</span>
+                </div>
+                <div class="logo-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/1e/Google_Slides_logo_%282014-2020%29.svg"
+                        alt="Google Slides">
+                    <span>Google Slides</span>
+                </div>
+                <div class="logo-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Zoom_Communications_Logo.svg"
+                        alt="Zoom">
+                    <span>Zoom</span>
+                </div>
+                <div class="logo-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg"
+                        alt="Youtube">
+                    <span>Youtube</span>
+                </div>
+                <div class="logo-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/RingCentral_logo.svg"
+                        alt="RingCentral">
+                    <span>RingCentral</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- What You Can Create -->
+        <section id="what-you-can-create" class="create-section">
+            <div class="create-container">
+                <div class="create-header">
+                    <h2>What you can create</h2>
+                    <p>Finally, tools that feel made for you — fast, focused, and free to start.</p>
+                    <a href="#" class="btn-primary large create-cta">Get started free</a>
+                </div>
+
+                <ul class="cards-list">
+                    <!-- Card 1: Illustrations -->
+                    <li class="usecase-card usecase-card--active" data-index="0">
+                        <section class="usecase-card__inner">
+                            <div class="usecase-card__image-wrap">
+                                <img src="/assets/slidedemo-DuhlT4UO.png" class="usecase-card__image" alt="Illustrations">
+                                <div class="usecase-card__gradient"></div>
+                            </div>
+                            <div class="usecase-card__content">
+                                <h3>Illustrations</h3>
+                                <p class="card-desc">From rough sketches to polished artwork, Curve lets you create
+                                    precise lines and shapes that you can combine to make gorgeous graphics, that feels
+                                    fast and fluid on iPad &amp; Mac.</p>
+                                <div class="card-features">
+                                    <div class="card-feature-item"><i class="ph ph-pencil-simple"></i><span>Apple
+                                            Pencil</span></div>
+                                    <div class="card-feature-item"><i class="ph ph-paint-brush"></i><span>Brushes</span>
+                                    </div>
+                                    <div class="card-feature-item"><i class="ph ph-stack"></i><span>Layers</span></div>
+                                    <div class="card-feature-item"><i class="ph ph-pen-nib"></i><span>Pen Tool</span>
+                                    </div>
+                                    <div class="card-feature-item"><i class="ph ph-magic-wand"></i><span>Auto
+                                            Trace</span></div>
+                                </div>
+                                <a href="https://www.linearity.io/use-cases/digital-illustration/" target="_blank"
+                                    class="card-cta">Learn More</a>
+                            </div>
+                        </section>
+                    </li>
+
+                    <!-- Card 2: Logo Design -->
+                    <li class="usecase-card usecase-card--inactive" data-index="1">
+                        <section class="usecase-card__inner">
+                            <div class="usecase-card__image-wrap">
+                                <img src="/assets/slidedemo-DuhlT4UO.png" class="usecase-card__image" alt="Logo Design">
+                                <div class="usecase-card__gradient"></div>
+                            </div>
+                            <div class="usecase-card__content">
+                                <h3>Logo Design</h3>
+                                <p class="card-desc">Design or animate logos that scale effortlessly from app icons to
+                                    billboards. With advanced vector tools and powerful typography controls, Curve helps
+                                    you design professional brand marks with absolute precision.</p>
+                                <div class="card-features">
+                                    <div class="card-feature-item"><i class="ph ph-magic-wand"></i><span>Auto
+                                            Trace</span></div>
+                                    <div class="card-feature-item"><i class="ph ph-selection-plus"></i><span>Node
+                                            Tool</span></div>
+                                    <div class="card-feature-item"><i class="ph ph-intersect"></i><span>Shape
+                                            Builder</span></div>
+                                    <div class="card-feature-item"><i
+                                            class="ph ph-circles-three"></i><span>Morphing</span></div>
+                                    <div class="card-feature-item"><i
+                                            class="ph ph-arrows-out-line-horizontal"></i><span>Infinite Scaling</span>
+                                    </div>
+                                </div>
+                                <a href="https://www.linearity.io/use-cases/logos/" target="_blank"
+                                    class="card-cta">Learn More</a>
+                            </div>
+                        </section>
+                    </li>
+
+                    <!-- Card 3: Branding -->
+                    <li class="usecase-card usecase-card--inactive" data-index="2">
+                        <section class="usecase-card__inner">
+                            <div class="usecase-card__image-wrap">
+                                <img src="/assets/slidedemo-DuhlT4UO.png" class="usecase-card__image" alt="Branding">
+                                <div class="usecase-card__gradient"></div>
+                            </div>
+                            <div class="usecase-card__content">
+                                <h3>Branding</h3>
+                                <p class="card-desc">Linearity helps you design assets, animate marketing materials,
+                                    curate your brand vision identity, and publish content easily across digital and
+                                    print.</p>
+                                <div class="card-features">
+                                    <div class="card-feature-item"><i class="ph ph-image"></i><span>Image Editing</span>
+                                    </div>
+                                    <div class="card-feature-item"><i class="ph ph-text-t"></i><span>Custom Fonts</span>
+                                    </div>
+                                    <div class="card-feature-item"><i class="ph ph-printer"></i><span>Print /
+                                            CMYK</span></div>
+                                    <div class="card-feature-item"><i class="ph ph-users"></i><span>Team
+                                            Workspaces</span></div>
+                                    <div class="card-feature-item"><i class="ph ph-gift"></i><span>Free Assets</span>
+                                    </div>
+                                </div>
+                                <a href="https://www.linearity.io/use-cases/branding/" target="_blank"
+                                    class="card-cta">Learn More</a>
+                            </div>
+                        </section>
+                    </li>
+
+                    <!-- Card 4: Ads -->
+                    <li class="usecase-card usecase-card--inactive" data-index="3">
+                        <section class="usecase-card__inner">
+                            <div class="usecase-card__image-wrap">
+                                <img src="/assets/slidedemo-DuhlT4UO.png" class="usecase-card__image" alt="Ads">
+                                <div class="usecase-card__gradient"></div>
+                            </div>
+                            <div class="usecase-card__content">
+                                <h3>Ads</h3>
+                                <p class="card-desc">Build bold, engaging ad creatives for digital or print. Design
+                                    everything from banner ads to campaign visuals quickly and at scale. With Move you
+                                    can animate your statics for even more engagement.</p>
+                                <div class="card-features">
+                                    <div class="card-feature-item"><i class="ph ph-robot"></i><span>AI Image
+                                            Tools</span></div>
+                                    <div class="card-feature-item"><i class="ph ph-gift"></i><span>Free Assets</span>
+                                    </div>
+                                    <div class="card-feature-item"><i
+                                            class="ph ph-play-circle"></i><span>Animation</span></div>
+                                    <div class="card-feature-item"><i class="ph ph-copy"></i><span>Templates</span>
+                                    </div>
+                                    <div class="card-feature-item"><i class="ph ph-film-strip"></i><span>Animated
+                                            Presets</span></div>
+                                </div>
+                                <a href="https://www.linearity.io/use-cases/ad-campaign/" target="_blank"
+                                    class="card-cta">Learn More</a>
+                            </div>
+                        </section>
+                    </li>
+
+                    <!-- Card 5: Calligraphy -->
+                    <li class="usecase-card usecase-card--inactive" data-index="4">
+                        <section class="usecase-card__inner">
+                            <div class="usecase-card__image-wrap">
+                                <img src="/assets/slidedemo-DuhlT4UO.png" class="usecase-card__image" alt="Calligraphy">
+                                <div class="usecase-card__gradient"></div>
+                            </div>
+                            <div class="usecase-card__content">
+                                <h3>Calligraphy</h3>
+                                <p class="card-desc">Transform lettering into scalable vector art. With natural brush
+                                    dynamics and precise path editing, Curve gives calligraphers and letterers the
+                                    control to create flowing, professional designs.</p>
+                                <div class="card-features">
+                                    <div class="card-feature-item"><i class="ph ph-paint-brush"></i><span>Brushes</span>
+                                    </div>
+                                    <div class="card-feature-item"><i class="ph ph-bezier-curve"></i><span>Vector
+                                            Paths</span></div>
+                                    <div class="card-feature-item"><i class="ph ph-drop-half-bottom"></i><span>Blend
+                                            Modes</span></div>
+                                    <div class="card-feature-item"><i class="ph ph-selection-plus"></i><span>Node
+                                            Editing</span></div>
+                                    <div class="card-feature-item"><i class="ph ph-grid-four"></i><span>Grid
+                                            Systems</span></div>
+                                </div>
+                                <a href="https://www.linearity.io/use-cases/branding/" target="_blank"
+                                    class="card-cta">Learn More</a>
+                            </div>
+                        </section>
+                    </li>
+
+                    <!-- Card 6: Posters -->
+                    <li class="usecase-card usecase-card--inactive" data-index="5">
+                        <section class="usecase-card__inner">
+                            <div class="usecase-card__image-wrap">
+                                <img src="/assets/slidedemo-DuhlT4UO.png" class="usecase-card__image" alt="Posters">
+                                <div class="usecase-card__gradient"></div>
+                            </div>
+                            <div class="usecase-card__content">
+                                <h3>Posters</h3>
+                                <p class="card-desc">Whether for events, products, or campaigns, Curve gives you the
+                                    tools to create visually stunning posters with professional polish.</p>
+                                <div class="card-features">
+                                    <div class="card-feature-item"><i class="ph ph-corners-out"></i><span>Infinite
+                                            Canvas</span></div>
+                                    <div class="card-feature-item"><i class="ph ph-text-t"></i><span>Typography
+                                            Tools</span></div>
+                                    <div class="card-feature-item"><i class="ph ph-image"></i><span>Image Editing</span>
+                                    </div>
+                                    <div class="card-feature-item"><i class="ph ph-grid-four"></i><span>Grid
+                                            Systems</span></div>
+                                    <div class="card-feature-item"><i class="ph ph-printer"></i><span>CMYK
+                                            Support</span></div>
+                                </div>
+                                <a href="https://www.linearity.io/use-cases/posters/" target="_blank"
+                                    class="card-cta">Learn More</a>
+                            </div>
+                        </section>
+                    </li>
+
+                    <!-- Card 7: Social Media -->
+                    <li class="usecase-card usecase-card--inactive" data-index="6">
+                        <section class="usecase-card__inner">
+                            <div class="usecase-card__image-wrap">
+                                <img src="/assets/slidedemo-DuhlT4UO.png" class="usecase-card__image" alt="Social Media">
+                                <div class="usecase-card__gradient"></div>
+                            </div>
+                            <div class="usecase-card__content">
+                                <h3>Social Media</h3>
+                                <p class="card-desc">Create scroll-stopping content for Instagram, TikTok, LinkedIn, and
+                                    beyond. Curve helps you design professional visuals and Move helps you animate in a
+                                    few clicks.</p>
+                                <div class="card-features">
+                                    <div class="card-feature-item"><i class="ph ph-copy"></i><span>Templates</span>
+                                    </div>
+                                    <div class="card-feature-item"><i class="ph ph-eraser"></i><span>Background
+                                            Removal</span></div>
+                                    <div class="card-feature-item"><i class="ph ph-gift"></i><span>Free Assets</span>
+                                    </div>
+                                    <div class="card-feature-item"><i
+                                            class="ph ph-play-circle"></i><span>Animation</span></div>
+                                    <div class="card-feature-item"><i class="ph ph-magic-wand"></i><span>Magic
+                                            Eraser</span></div>
+                                </div>
+                                <a href="https://www.linearity.io/use-cases/social-media-design/" target="_blank"
+                                    class="card-cta">Learn More</a>
+                            </div>
+                        </section>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <div class="gradient-transition-what-you-can-create"></div>
+
+        <section id="why-pick" class="why-pick-section">
+            <div class="why-pick-container">
+                <div class="why-pick-header">
+                    <h2>Why pick AhaSlides?</h2>
+                    <p>It's easy to use, data-backed, and really affordable.</p>
+                </div>
+
+                <div class="why-pick-grid">
+                    <!-- Card 1 -->
+                    <div class="why-pick-card">
+                        <div class="card-text">
+                            <h3>Create in seconds, not hours</h3>
+                            <p>Generate content, quizzes, and summaries instantly. Focus on your message, not the prep.
+                            </p>
+                        </div>
+                        <div class="card-image-placeholder">
+                            <img src="https://via.placeholder.com/600x400/E2E8F0/A0AEC0?text=Image"
+                                alt="Create in seconds" class="feature-img">
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="why-pick-card">
+                        <div class="card-text">
+                            <h3>Presentation data you can actually use</h3>
+                            <p>Boardroom-ready reports. Measure engagement and prove ROI with automated data exports.
+                            </p>
+                        </div>
+                        <div class="card-image-placeholder">
+                            <img src="https://via.placeholder.com/600x400/E2E8F0/A0AEC0?text=Image"
+                                alt="Presentation data" class="feature-img">
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="why-pick-card">
+                        <div class="card-text">
+                            <h3>Scale without the chaos</h3>
+                            <p>Manage teams, permissions, and brand assets from a single, secure dashboard.</p>
+                        </div>
+                        <div class="card-image-placeholder">
+                            <img src="https://via.placeholder.com/600x400/E2E8F0/A0AEC0?text=Image"
+                                alt="Scale without chaos" class="feature-img">
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="why-pick-card">
+                        <div class="card-text">
+                            <h3>Never start from a blank page</h3>
+                            <p>1,000+ science-backed decks. Start fast and stay professional in any scenario</p>
+                        </div>
+                        <div class="card-image-placeholder">
+                            <img src="https://via.placeholder.com/600x400/E2E8F0/A0AEC0?text=Image" alt="Templates"
+                                class="feature-img">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="why-pick-cta">
+                    <!-- The color of primary button is purple -->
+                    <a href="#" class="btn-primary" style="background-color: #6d28d9;">Try it now - It's free</a>
+                    <a href="#" class="btn-outline">See our pricing</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 My Website. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
