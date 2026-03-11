@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const floatingItems = document.querySelectorAll('.visual-item.floating');
 
     if (heroBg || speaker || floatingItems.length > 0) {
-        const tl = gsap.timeline({ delay: 0.4 });
+        const tl = gsap.timeline({ delay: 0.1 });
 
         // 1. BG Entrance
         if (heroBg) {
@@ -88,6 +88,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         );
 
+        const getScrollDist = () => window.innerWidth < 768 ? '+=500' : '+=800';
+
         gsap.to(logoScaleImg, {
             scale: 150,
             opacity: 0,
@@ -96,9 +98,10 @@ document.addEventListener('DOMContentLoaded', () => {
             scrollTrigger: {
                 trigger: logoScaleSection,
                 start: 'center center',
-                end: '+=1500',
+                end: getScrollDist,
                 scrub: 1,
-                pin: true
+                pin: true,
+                invalidateOnRefresh: true
             }
         });
         gsap.to(logoScaleSection, {
@@ -108,8 +111,9 @@ document.addEventListener('DOMContentLoaded', () => {
             scrollTrigger: {
                 trigger: logoScaleSection,
                 start: 'center center',
-                end: '+=1500',
-                scrub: 1
+                end: getScrollDist,
+                scrub: 1,
+                invalidateOnRefresh: true
             }
         });
     }
@@ -332,11 +336,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const firstCardContent = firstCard.querySelector('.usecase-card__content');
         const firstCardContentEls = firstCardContent ? firstCardContent.children : [];
 
-        // Wrap heading words in spans for staggered word-by-word reveal
-        const words = logoScaleHeading.textContent.split(/\s+/);
-        logoScaleHeading.innerHTML = words.map(w => `<span class="create-h2-word" style="display:inline-block">${w}</span>`).join(' ');
+        // Wrap heading words in spans for staggered word-by-word reveal if needed
+        let createWords = logoScaleHeading.querySelectorAll('.create-h2-word');
+        if (createWords.length === 0) {
+            const words = logoScaleHeading.textContent.trim().split(/\s+/);
+            logoScaleHeading.innerHTML = words.map(w => `<span class="create-h2-word" style="display:inline-block">${w}</span>`).join(' ');
+            createWords = logoScaleHeading.querySelectorAll('.create-h2-word');
+        }
 
-        const createWords = logoScaleHeading.querySelectorAll('.create-h2-word');
+        const underlineTrigger = logoScaleHeading.querySelector('.ai-underline-trigger');
+
         gsap.set(createWords, { y: 28, opacity: 0 });
         gsap.set(firstCardImageWrap, { y: 80, scale: 0.9, opacity: 0 });
         gsap.set(firstCardContentEls, { y: 20, opacity: 0 });
@@ -351,6 +360,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 ease: 'back.out(1.4)',
                 overwrite: true
             });
+        }
+
+        if (underlineTrigger) {
+            welcomeTl.to(underlineTrigger, {
+                onStart: () => underlineTrigger.classList.add('ai-underline-active'),
+                duration: 0.1
+            }, "-=0.2");
         }
         welcomeTl.to(firstCardImageWrap, {
             y: 0,
