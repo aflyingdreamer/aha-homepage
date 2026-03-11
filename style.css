@@ -50,6 +50,7 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     overflow-x: hidden;
+    max-width: 100vw;
 }
 
 a {
@@ -497,21 +498,7 @@ header .nav-item {
     position: relative;
 }
 
-.logo-scale {
-    width: 400px;
-    max-width: 50vw;
-    height: auto;
-    z-index: 0;
-    transform-origin: center center;
-    pointer-events: none;
-    opacity: 1;
-}
 
-.logo-scale svg {
-    width: 100%;
-    height: auto;
-    display: block;
-}
 
 .hero-visuals-bg {
     position: absolute;
@@ -668,7 +655,7 @@ header .nav-item {
 
 /* What You Can Create Section */
 .create-section {
-    padding: 0 1rem 6rem 1rem;
+    padding: 6rem 1rem;
     background-color: var(--theme-1-bg);
     display: flex;
     justify-content: center;
@@ -684,8 +671,8 @@ header .nav-item {
 
 .create-header {
     text-align: center;
-    margin-bottom: 4rem;
-    max-width: 700px;
+    margin-bottom: 6rem;
+    max-width: 800px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -693,7 +680,7 @@ header .nav-item {
 .create-header h2 {
     font-size: 2.5rem;
     color: #fff;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 }
 
 .create-header p {
@@ -723,8 +710,6 @@ header .nav-item {
     display: flex;
     flex-direction: column;
     gap: 0;
-    padding-bottom: 96px;
-    /* Provides scroll room for the last card's dispersal */
 }
 
 /* Each card sticks — later cards physically slide over earlier ones */
@@ -734,7 +719,7 @@ header .nav-item {
     margin-bottom: 5rem;
     border-radius: 24px;
     overflow: hidden;
-    background-color: #1a1a2e;
+    background-color: var(--theme-1-bg);
     transition: box-shadow 0.6s ease;
     /* Prevent sub-pixel rendering gaps during scale/scroll */
     -webkit-backface-visibility: hidden;
@@ -758,10 +743,11 @@ header .nav-item {
     display: flex;
     justify-content: center;
     overflow: hidden;
-    background-color: #1a1a2e;
+    background-color: var(--theme-1-bg);
 }
 
-.usecase-card__image-wrap.static-image {
+.usecase-card__image-wrap.static-image,
+.usecase-card__image-wrap.complex-image {
     max-width: 1000px;
 }
 
@@ -784,7 +770,7 @@ header .nav-item {
     /* Larger on desktop */
     border-radius: 16px;
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
-    z-index: 10;
+    z-index: 1;
     position: relative;
     background: #fff;
     padding: 12px;
@@ -796,7 +782,7 @@ header .nav-item {
     /* Larger side images */
     border-radius: 12px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-    z-index: 5;
+    z-index: 1;
     background: #fff;
     padding: 8px;
 }
@@ -813,22 +799,22 @@ header .nav-item {
 
 .item-1 {
     top: 25%;
-    left: -2%;
+    left: 0;
 }
 
 .item-2 {
     top: 25%;
-    right: -3%;
+    right: 0;
 }
 
 .item-3 {
     bottom: 0%;
-    left: -5%;
+    left: 0;
 }
 
 .item-4 {
     bottom: 5%;
-    right: -2%;
+    right: 0;
 }
 
 .usecase-card__image {
@@ -846,7 +832,7 @@ header .nav-item {
     position: absolute;
     inset: -1px 0;
     /* Extend slightly to prevent gaps */
-    background: linear-gradient(0deg, #1a1a2e 0%, rgba(26, 26, 46, 0.8) 15%, transparent 100%);
+    background: linear-gradient(0deg, var(--theme-1-bg) 0%, rgba(26, 26, 46, 0.2) 50%, transparent 100%);
     pointer-events: none;
     z-index: 2;
 }
@@ -950,40 +936,18 @@ header .nav-item {
     transform: scale(1);
 }
 
-#logo-scale {
-    --current-bg: var(--theme-bg);
-    --current-text: #1a1a2e;
-    background-color: var(--current-bg);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    overflow: visible;
-    position: relative;
-    z-index: 1;
-}
 
-.logo-scale-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 6rem;
-    width: 100%;
-    z-index: 2;
-}
 
-.logo-scale-heading {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    color: var(--current-text);
+.create-main-title {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    color: #ffffff;
     text-align: center;
-    max-width: 900px;
-    line-height: 1.2;
-    opacity: 1;
+    max-width: 100%;
+    line-height: 1.1;
     z-index: 2;
 }
 
-.logo-scale-heading .create-h2-word {
+.create-main-title .create-h2-word {
     display: inline-block;
     margin-right: 0.2em;
 }
@@ -1027,32 +991,33 @@ header .nav-item {
 }
 
 /* Extended background to cover white space above and below during pin */
-#logo-scale::before {
-    content: '';
-    position: absolute;
-    top: -50vh;
-    bottom: -50vh;
-    left: 0;
-    right: 0;
-    background-color: var(--current-bg);
-    z-index: -1;
-}
+/* Extended background to cover white space during pin - constrained to parent */
+
 
 .gradient-transition-hero {
-    height: 30px;
-    background: var(--theme-1-bg);
+    height: 120px;
+    background: linear-gradient(180deg,
+            var(--theme-bg) 0%,
+            color-mix(in srgb, var(--theme-bg), var(--theme-1-bg) 20%) 30%,
+            color-mix(in srgb, var(--theme-bg), var(--theme-1-bg) 50%) 50%,
+            color-mix(in srgb, var(--theme-bg), var(--theme-1-bg) 80%) 70%,
+            var(--theme-1-bg) 100%);
 }
 
 
 .gradient-transition-what-you-can-create {
-    height: 0px;
-    background: linear-gradient(180deg, var(--theme-1-gradient-start) 0%, #F4F8FF 100%);
+    height: 120px;
+    background: linear-gradient(180deg,
+            var(--theme-1-bg) 0%,
+            color-mix(in srgb, var(--theme-1-bg), var(--theme-2-bg) 20%) 30%,
+            color-mix(in srgb, var(--theme-1-bg), var(--theme-2-bg) 50%) 50%,
+            color-mix(in srgb, var(--theme-1-bg), var(--theme-2-bg) 80%) 70%,
+            var(--theme-2-bg) 100%);
 }
 
-/* Why Pick AhaSlides Section */
 .why-pick-section {
     background-color: var(--theme-2-bg);
-    padding: 6rem 2rem;
+    padding: 6rem 2rem 0;
     display: flex;
     justify-content: center;
 }
@@ -1147,25 +1112,39 @@ header .nav-item {
 /* Button overrides removed in favor of unified system */
 
 .gradient-transition-why-pick {
-    height: 30px;
-    background: linear-gradient(180deg, var(--theme-2-gradient-start) 0%, #FFF 100%);
+    height: 120px;
+    background: linear-gradient(180deg,
+            var(--theme-2-bg) 0%,
+            color-mix(in srgb, var(--theme-2-bg), var(--theme-3-bg) 20%) 30%,
+            color-mix(in srgb, var(--theme-2-bg), var(--theme-3-bg) 50%) 50%,
+            color-mix(in srgb, var(--theme-2-bg), var(--theme-3-bg) 80%) 70%,
+            var(--theme-3-bg) 100%);
 }
 
 .gradient-transition-testimonials {
-    height: 30px;
-    background: linear-gradient(180deg, var(--theme-3-gradient-start) 0%, #FFE3E9 100%);
+    height: 120px;
+    background: linear-gradient(180deg,
+            var(--theme-3-bg) 0%,
+            color-mix(in srgb, var(--theme-3-bg), var(--theme-4-bg) 20%) 30%,
+            color-mix(in srgb, var(--theme-3-bg), var(--theme-4-bg) 50%) 50%,
+            color-mix(in srgb, var(--theme-3-bg), var(--theme-4-bg) 80%) 70%,
+            var(--theme-4-bg) 100%);
 }
 
 .gradient-transition-blog {
-    height: 30px;
-    background: linear-gradient(180deg, var(--theme-4-gradient-start) 0%, #FFFFFF 100%);
+    height: 120px;
+    background: linear-gradient(180deg,
+            var(--theme-4-bg) 0%,
+            color-mix(in srgb, var(--theme-4-bg), #FFFFFF 20%) 30%,
+            color-mix(in srgb, var(--theme-4-bg), #FFFFFF 50%) 50%,
+            color-mix(in srgb, var(--theme-4-bg), #FFFFFF 80%) 70%,
+            #FFFFFF 100%);
 }
-
 
 /* Distraction Section */
 .distraction-section {
     background-color: var(--theme-4-bg);
-    padding: 8rem 2rem;
+    padding: 2rem 2rem 8rem;
     display: flex;
     justify-content: center;
 }
@@ -1478,7 +1457,7 @@ header .nav-item {
 /* Testimonials Section */
 .testimonials-section {
     background-color: var(--theme-3-bg);
-    padding: 6rem 2rem;
+    padding: 6rem 2rem 0;
     display: flex;
     justify-content: center;
 }
@@ -1854,9 +1833,15 @@ header .nav-item {
     }
 
     .nav-right .nav-item,
-    .nav-right .btn-ghost {
+    .nav-right .btn-ghost,
+    .nav-right .btn-secondary {
         display: none;
-        /* Hide Language and Login on mobile */
+        /* Hide Language and Login to save space for logo */
+    }
+
+    .logo img {
+        height: 24px;
+        /* Smaller logo on mobile */
     }
 
     .nav-links {
@@ -2177,8 +2162,9 @@ header .nav-item {
         gap: 2rem;
     }
 
-    .visual-item.logo-scale {
-        width: 400%;
+    .logo-scale {
+        width: 100%;
+        max-width: 80vw;
     }
 }
 
@@ -2193,10 +2179,6 @@ header .nav-item {
         text-align: center;
     }
 
-    .visual-item.logo-scales {
-        width: 400%;
-        transform: translate(-10%, 50%) !important;
-    }
 }
 
 @media screen and (max-width: 991px) {
@@ -2262,6 +2244,43 @@ header .nav-item {
 }
 
 @media screen and (max-width: 478px) {
+    .create-main-title {
+        font-size: 2rem;
+    }
+
+    .gradient-transition-hero {
+        height: 150px;
+    }
+
+    .gradient-transition-what-you-can-create {
+        height: 150px;
+    }
+
+    .create-header h2 {
+        font-size: 1.75rem;
+        color: #fff;
+        margin-bottom: 2rem;
+    }
+
+    .hero-content h1 {
+        font-size: 28px;
+    }
+
+    .topbar-url {
+        display: none;
+        /* Hide URL label to save space in topbar */
+    }
+
+    .topbar-input {
+        width: 80px;
+        /* Smaller input */
+    }
+
+    .hero-slide {
+        width: 120%;
+        /* Let images take a bit more room */
+    }
+
     .visual-item.floating {
         /* Scale down floating elements for mobile */
         transform: scale(0.6) !important;

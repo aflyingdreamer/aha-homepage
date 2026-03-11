@@ -67,56 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Logo Scale Animation ---
-    const logoScaleSection = document.querySelector('#logo-scale');
-    const logoScaleImg = document.querySelector('.logo-scale');
-    if (logoScaleSection && logoScaleImg) {
 
-        const logoSVG = logoScaleImg.querySelector('svg');
-        // Entrance animation
-        gsap.fromTo(logoSVG,
-            { y: 120, opacity: 0 },
-            {
-                y: 0,
-                opacity: 1,
-                duration: 1.2,
-                ease: "power3.out",
-                scrollTrigger: {
-                    trigger: logoScaleSection,
-                    start: 'top 80%',
-                    once: true
-                }
-            }
-        );
-
-        const getScrollDist = () => window.innerWidth < 768 ? '+=500' : '+=800';
-
-        gsap.to(logoScaleImg, {
-            scale: 150,
-            opacity: 0,
-            ease: "power2.in",
-            force3D: false, // Keeps vector crisp by disabling layer promotion
-            scrollTrigger: {
-                trigger: logoScaleSection,
-                start: 'center center',
-                end: getScrollDist,
-                scrub: 1,
-                pin: true,
-                invalidateOnRefresh: true
-            }
-        });
-        gsap.to(logoScaleSection, {
-            '--current-bg': '#1a1a2e',
-            '--current-text': '#ffffff',
-            ease: "none",
-            scrollTrigger: {
-                trigger: logoScaleSection,
-                start: 'center center',
-                end: getScrollDist,
-                scrub: 1,
-                invalidateOnRefresh: true
-            }
-        });
-    }
 
 
     // Sticky Stacking Cards Logic
@@ -205,15 +156,20 @@ document.addEventListener('DOMContentLoaded', () => {
         gsap.set(moreMain, { y: 220 });
 
         // Single continuous timeline for Rise -> Dispersal without pinning
+        const isMobile = window.innerWidth < 768;
+
         const moreTl = gsap.timeline({
             scrollTrigger: {
                 trigger: lastUsecaseCard,
                 start: 'top bottom', // Start rising when top of card enters bottom
-                end: 'bottom top+=150',   // Give a bit more scroll distance for a calmer motion
-                scrub: 1,            // Linear scrub for maximum smoothness
+                end: isMobile ? 'bottom top+=1200' : 'bottom top+=800',
+                scrub: isMobile ? 2 : 1.5, // Even more smoothing on mobile
                 invalidateOnRefresh: true
             }
         });
+
+        const dispersalLarge = isMobile ? -150 : -280;
+        const dispersalSmall = isMobile ? -120 : -220;
 
         // Rise to center
         moreTl.to([moreItems, moreMain], {
@@ -222,11 +178,11 @@ document.addEventListener('DOMContentLoaded', () => {
             duration: 1.2,
             ease: 'power2.out'
         })
-            // Disperse slightly upward, with easing, for a more subtle translation
-            .to('.item-1', { y: -520, duration: 2, ease: 'power1.out' }, 1.2)
-            .to('.item-2', { y: -520, duration: 2, ease: 'power1.out' }, 1.3)
-            .to('.item-3', { y: -440, duration: 2, ease: 'power1.out' }, 1.4)
-            .to('.item-4', { y: -440, duration: 2, ease: 'power1.out' }, 1.5);
+            // Disperse with screen-size aware values
+            .to('.item-1', { y: dispersalLarge, duration: 2, ease: 'power1.out' }, 1.2)
+            .to('.item-2', { y: dispersalLarge, duration: 2, ease: 'power1.out' }, 1.3)
+            .to('.item-3', { y: dispersalSmall, duration: 2, ease: 'power1.out' }, 1.4)
+            .to('.item-4', { y: dispersalSmall, duration: 2, ease: 'power1.out' }, 1.5);
     }
 
     // --- STICKY HEADER LOGIC ---
@@ -255,8 +211,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- THEME & STICKY BG TRANSITIONS ---
     const root = document.documentElement;
 
-
-
+    // Zone 0: Hero -> Create
+    const trigger0 = document.querySelector('.gradient-transition-hero');
+    if (trigger0) {
+        gsap.to(root, {
+            '--theme-bg': '#1a1a2e',
+            '--theme-text': '#ffffff',
+            ease: 'none',
+            scrollTrigger: { trigger: trigger0, start: 'bottom 95%', end: 'top top', scrub: 1 }
+        });
+    }
 
     // Zone 1: Create -> Why Pick
     const trigger1 = document.querySelector('.gradient-transition-what-you-can-create');
@@ -272,7 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
             '--theme-cta-bg': '#6d28d9',
             '--theme-cta-text': '#ffffff',
             ease: 'none',
-            scrollTrigger: { trigger: trigger1, start: 'top 20%', end: 'top top', scrub: 1 }
+            scrollTrigger: { trigger: trigger1, start: 'center 80%', end: 'center 20%', scrub: 1 }
         });
     }
 
@@ -283,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
             '--theme-2-bg': '#FFF',
             '--theme-2-gradient-start': '#FFF',
             ease: 'none',
-            scrollTrigger: { trigger: trigger2, start: 'bottom 90%', end: 'top top', scrub: 1 }
+            scrollTrigger: { trigger: trigger2, start: 'center 80%', end: 'center 20%', scrub: 1 }
         });
     }
 
@@ -294,7 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
             '--theme-3-bg': '#FFE3E9',
             '--theme-3-gradient-start': '#FFE3E9',
             ease: 'none',
-            scrollTrigger: { trigger: trigger3, start: 'bottom 90%', end: 'top top', scrub: 1 }
+            scrollTrigger: { trigger: trigger3, start: 'center 80%', end: 'center 20%', scrub: 1 }
         });
     }
 
@@ -305,7 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
             '--theme-4-bg': '#FFFFFF',
             '--theme-4-gradient-start': '#FFFFFF',
             ease: 'none',
-            scrollTrigger: { trigger: trigger4, start: 'bottom 95%', end: 'top top', scrub: 1 }
+            scrollTrigger: { trigger: trigger4, start: 'center 80%', end: 'center 20%', scrub: 1 }
         });
     }
 
@@ -313,38 +277,86 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    // --- REVEAL ANIMATIONS ---
-    const revealElements = document.querySelectorAll('.why-pick-header, .testimonials-header, .science-header, .science-cta, .faq-header');
-    revealElements.forEach(header => {
-        const els = header.children;
-        gsap.set(els, { y: 30, opacity: 0 });
+    // --- UNIFIED REVEAL ANIMATIONS (from "Why pick" to end of page) ---
+    const revealConfig = {
+        y: 30,
+        opacity: 0,
+        duration: 0.5,
+        ease: "power2.out",
+        stagger: 0.1,
+        start: "top 85%"
+    };
+
+    const setupReveal = (trigger, elements, customConfig = {}) => {
+        const triggerEl = document.querySelector(trigger);
+        if (!triggerEl) return;
+
+        const config = { ...revealConfig, ...customConfig };
+        const els = elements ? triggerEl.querySelectorAll(elements) : [triggerEl];
+
+        if (els.length === 0) return;
+
+        // Set initial state
+        gsap.set(els, { y: config.y, opacity: 0 });
+
         ScrollTrigger.create({
-            trigger: header,
-            start: 'top 85%',
+            trigger: triggerEl,
+            start: config.start,
             onEnter: () => {
-                gsap.to(els, { y: 0, opacity: 1, duration: 0.5, stagger: 0.1, ease: 'power2.out' });
+                gsap.to(els, {
+                    y: 0,
+                    opacity: 1,
+                    duration: config.duration,
+                    stagger: config.stagger,
+                    ease: config.ease,
+                    overwrite: 'auto'
+                });
             },
             once: true
         });
-    });
+    };
+
+    // Apply reveals to sections and their matching elements
+    setupReveal('.why-pick-header', 'h2, p');
+    setupReveal('.why-pick-grid', '.why-pick-card', { stagger: 0.15 });
+    setupReveal('.why-pick-cta', '.btn', { stagger: 0.1 });
+
+    setupReveal('.testimonials-header', 'h2');
+    setupReveal('.testimonials-list', '.testimonial-card', { stagger: 0.15 });
+    setupReveal('.trusted-by', 'p, .trusted-logos img', { stagger: 0.05 });
+    setupReveal('.testimonials-cta', '.btn');
+
+    // Distraction section - H2 already has its own character animation
+    setupReveal('.distraction-header', '.distraction-cta');
+    setupReveal('.distraction-metrics', '.metric-item', { stagger: 0.2 });
+
+    setupReveal('.science-header', 'h2');
+    setupReveal('.blog-grid', '.blog-card', { stagger: 0.15 });
+    setupReveal('.science-cta', '.btn');
+
+    setupReveal('.faq-header', 'h2, p, .faq-contact');
+    setupReveal('.faq-content', '.accordion-item', { stagger: 0.1 });
+
+    setupReveal('.main-footer', '.footer-column, .footer-brand, .footer-bottom > *', { stagger: 0.05, start: "top 95%" });
+
 
     // --- "WELCOME TO THE SHOW" ---
-    const logoScaleHeading = document.querySelector('.logo-scale-heading');
+    const createMainTitle = document.querySelector('.create-main-title');
     const firstCard = document.querySelector('.usecase-card[data-index="0"]');
-    if (logoScaleHeading && firstCard) {
+    if (createMainTitle && firstCard) {
         const firstCardImageWrap = firstCard.querySelector('.usecase-card__image-wrap');
         const firstCardContent = firstCard.querySelector('.usecase-card__content');
         const firstCardContentEls = firstCardContent ? firstCardContent.children : [];
 
         // Wrap heading words in spans for staggered word-by-word reveal if needed
-        let createWords = logoScaleHeading.querySelectorAll('.create-h2-word');
+        let createWords = createMainTitle.querySelectorAll('.create-h2-word');
         if (createWords.length === 0) {
-            const words = logoScaleHeading.textContent.trim().split(/\s+/);
-            logoScaleHeading.innerHTML = words.map(w => `<span class="create-h2-word" style="display:inline-block">${w}</span>`).join(' ');
-            createWords = logoScaleHeading.querySelectorAll('.create-h2-word');
+            const words = createMainTitle.textContent.trim().split(/\s+/);
+            createMainTitle.innerHTML = words.map(w => `<span class="create-h2-word" style="display:inline-block">${w}</span>`).join(' ');
+            createWords = createMainTitle.querySelectorAll('.create-h2-word');
         }
 
-        const underlineTrigger = logoScaleHeading.querySelector('.ai-underline-trigger');
+        const underlineTrigger = createMainTitle.querySelector('.ai-underline-trigger');
 
         gsap.set(createWords, { y: 28, opacity: 0 });
         gsap.set(firstCardImageWrap, { y: 80, scale: 0.9, opacity: 0 });
@@ -384,8 +396,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 0.5);
 
         ScrollTrigger.create({
-            trigger: logoScaleSection,
-            start: 'center bottom',
+            trigger: '#what-you-can-create',
+            start: 'top 80%',
             onEnter: () => welcomeTl.play(),
             once: true
         });
@@ -446,20 +458,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }
 
-    // Staggered Blog Cards Reveal
-    const blogGrid = document.querySelector('.blog-grid');
-    if (blogGrid) {
-        const cards = blogGrid.querySelectorAll('.blog-card');
-        gsap.set(cards, { y: 40, opacity: 0 });
-        ScrollTrigger.create({
-            trigger: blogGrid,
-            start: 'top 80%',
-            onEnter: () => {
-                gsap.to(cards, { y: 0, opacity: 1, duration: 0.6, stagger: 0.15, ease: 'power2.out' });
-            },
-            once: true
-        });
-    }
 
     // --- INTERACTIVE ELEMENTS ---
 
