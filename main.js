@@ -21,10 +21,73 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', adjustHeroHeight);
     adjustHeroHeight();
 
+    // --- Hero Visuals Entrance Animation ---
+    const heroBg = document.querySelector('.hero-visuals-bg');
+    const speaker = document.querySelector('.visual-item.speaker');
+    const floatingItems = document.querySelectorAll('.visual-item.floating');
+
+    if (heroBg || speaker || floatingItems.length > 0) {
+        const tl = gsap.timeline({ delay: 0.4 });
+
+        // 1. BG Entrance
+        if (heroBg) {
+            tl.fromTo(heroBg,
+                { opacity: 0 },
+                { opacity: 1, duration: 0.5, ease: "power2.out" }
+            );
+        }
+
+        // 2. Speaker Entrance
+        if (speaker) {
+            tl.fromTo(speaker,
+                { opacity: 0 },
+                {
+                    opacity: 1,
+                    duration: 0.5,
+                    ease: "power2.out"
+                },
+                "-=0.2"
+            );
+        }
+
+        // 3. Floating Elements Entrance (Staggered)
+        if (floatingItems.length > 0) {
+            tl.fromTo(floatingItems,
+                { opacity: 0, scale: 0.95 },
+                {
+                    opacity: 1,
+                    scale: 1,
+                    duration: 0.5,
+                    stagger: 0.1,
+                    ease: "back.out(1.2)"
+                },
+                "-=0.2"
+            );
+        }
+    }
+
     // --- Logo Scale Animation ---
     const logoScaleSection = document.querySelector('#logo-scale');
     const logoScaleImg = document.querySelector('.logo-scale');
     if (logoScaleSection && logoScaleImg) {
+
+        const logoSVG = logoScaleImg.querySelector('svg');
+        // Entrance animation
+        gsap.fromTo(logoSVG,
+            { y: 120, opacity: 0 },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 1.2,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: logoScaleSection,
+                    start: 'top 80%',
+                    once: true
+                }
+            }
+        );
+
         gsap.to(logoScaleImg, {
             scale: 150,
             opacity: 0,
@@ -32,18 +95,19 @@ document.addEventListener('DOMContentLoaded', () => {
             force3D: false, // Keeps vector crisp by disabling layer promotion
             scrollTrigger: {
                 trigger: logoScaleSection,
-                start: 'top top',
+                start: 'center center',
                 end: '+=1500',
                 scrub: 1,
                 pin: true
             }
         });
         gsap.to(logoScaleSection, {
-            backgroundColor: '#1a1a2e',
+            '--current-bg': '#1a1a2e',
+            '--current-text': '#ffffff',
             ease: "none",
             scrollTrigger: {
                 trigger: logoScaleSection,
-                start: 'top top',
+                start: 'center center',
                 end: '+=1500',
                 scrub: 1
             }
@@ -260,24 +324,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- "WELCOME TO THE SHOW" — What You Can Create section entrance ---
-    const createSection = document.querySelector('#what-you-can-create');
-    const createHeader = document.querySelector('.create-header');
+    // --- "WELCOME TO THE SHOW" ---
+    const logoScaleHeading = document.querySelector('.logo-scale-heading');
     const firstCard = document.querySelector('.usecase-card[data-index="0"]');
-    if (createSection && createHeader && firstCard) {
-        const createH2 = createHeader.querySelector('h2');
+    if (logoScaleHeading && firstCard) {
         const firstCardImageWrap = firstCard.querySelector('.usecase-card__image-wrap');
-        const firstCardImage = firstCard.querySelector('.usecase-card__image');
         const firstCardContent = firstCard.querySelector('.usecase-card__content');
         const firstCardContentEls = firstCardContent ? firstCardContent.children : [];
 
         // Wrap heading words in spans for staggered word-by-word reveal
-        if (createH2) {
-            const words = createH2.textContent.split(/\s+/);
-            createH2.innerHTML = words.map(w => `<span class="create-h2-word" style="display:inline-block">${w}</span>`).join(' ');
-        }
+        const words = logoScaleHeading.textContent.split(/\s+/);
+        logoScaleHeading.innerHTML = words.map(w => `<span class="create-h2-word" style="display:inline-block">${w}</span>`).join(' ');
 
-        const createWords = createHeader.querySelectorAll('.create-h2-word');
+        const createWords = logoScaleHeading.querySelectorAll('.create-h2-word');
         gsap.set(createWords, { y: 28, opacity: 0 });
         gsap.set(firstCardImageWrap, { y: 80, scale: 0.9, opacity: 0 });
         gsap.set(firstCardContentEls, { y: 20, opacity: 0 });
@@ -309,8 +368,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 0.5);
 
         ScrollTrigger.create({
-            trigger: createSection,
-            start: 'top 78%',
+            trigger: logoScaleSection,
+            start: 'center bottom',
             onEnter: () => welcomeTl.play(),
             once: true
         });
@@ -431,14 +490,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Video Hover Playback
-    document.querySelectorAll('.video-thumbnail').forEach(thumb => {
-        const video = thumb.querySelector('video');
-        if (video) {
-            thumb.addEventListener('mouseenter', () => {
-                video.play().catch(err => console.log("Video interrupted:", err));
-            });
-            thumb.addEventListener('mouseleave', () => { video.pause(); });
-        }
-    });
 });
